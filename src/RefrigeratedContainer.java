@@ -3,6 +3,9 @@ import java.util.List;
 
 public class RefrigeratedContainer extends Container {
     List<Product> productsAllowed = new ArrayList<>();
+    private String currentLoadedProduct= "N/A";
+    private double currentTemperature = 20;
+
 
     public RefrigeratedContainer(int massOfTheContainer, int height, int tareWeight, int depth, int maxPayloadInKg, String serialNumber) {
         super(massOfTheContainer, height, tareWeight, depth, maxPayloadInKg, serialNumber);
@@ -17,14 +20,35 @@ public class RefrigeratedContainer extends Container {
         productsAllowed.add(new Product("Butter", 20.5));
         productsAllowed.add(new Product("Eggs", 19));
     }
-}
 
-class Product{
-    String name;
-    double temperature;
+    public void emptyTheCargo(){
+        super.emptyTheCargo();
+        currentLoadedProduct = "N/A";
+        currentTemperature = 20;
+    }
 
-    public Product(String name, double temperature) {
-        this.name = name;
-        this.temperature = temperature;
+    public boolean loadTheCargo(int newMass, Product newProduct){
+        boolean isProductOnTheList = false;
+        for(Product p : productsAllowed){
+            if(p.getName() == newProduct.getName()){
+                isProductOnTheList = true;
+                break;
+            }
+        }
+        if(!isProductOnTheList){
+            System.out.println("WARNING: THE PRODUCT IS NOT ON THE LIST - CAN NOT PROCEED TO LOADING THE CARGO: " + getSerialNumber());
+            return false;
+        }
+        if(getIsLoaded()){
+            System.out.println("WARNING: THE CARGO IS ALREADY LOADED - CAN NOT PROCEED TO LOADING THE CARGO: " + getSerialNumber());
+            return false;
+        }
+
+        else {
+            currentLoadedProduct = newProduct.getName();
+            currentTemperature = newProduct.getTemperature();
+            setLoaded(true);
+            return true;
+        }
     }
 }
