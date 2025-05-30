@@ -45,6 +45,10 @@ public abstract class Container {
         return serialNumber;
     }
 
+    public int getMaxPayloadInKg(){
+        return maxPayloadInKg;
+    }
+
     public void setWeightOfTheCargo(int weightOfTheCargo) {
         this.weightOfTheCargo = weightOfTheCargo;
     }
