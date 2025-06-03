@@ -7,8 +7,8 @@ public class RefrigeratedContainer extends Container {
     private double currentTemperature = 20;
 
 
-    public RefrigeratedContainer(int massOfTheContainer, int height, int tareWeight, int depth, int maxPayloadInKg, String serialNumber) {
-        super(massOfTheContainer, height, tareWeight, depth, maxPayloadInKg, serialNumber);
+    public RefrigeratedContainer(int massOfTheContainer, int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager containerManager) {
+        super(massOfTheContainer, height, tareWeight, depth, maxPayloadInKg, containerManager, "CON-R");
         productsAllowed.add(new Product("Bananas", 13.3));
         productsAllowed.add(new Product("Chocolate", 18));
         productsAllowed.add(new Product("Fish", 2));
@@ -36,11 +36,11 @@ public class RefrigeratedContainer extends Container {
             }
         }
         if(!isProductOnTheList){
-            System.out.println("WARNING: THE PRODUCT IS NOT ON THE LIST - CAN NOT PROCEED TO LOADING THE CARGO: " + getSerialNumber());
+            System.out.println(getSerialNumber() + ": WARNING: THE PRODUCT IS NOT ON THE LIST - CAN NOT PROCEED TO LOADING THE CARGO");
             return false;
         }
         if(getIsLoaded()){
-            System.out.println("WARNING: THE CARGO IS ALREADY LOADED - CAN NOT PROCEED TO LOADING THE CARGO: " + getSerialNumber());
+            System.out.println(getSerialNumber() + ": WARNING: THE CARGO IS ALREADY LOADED - CAN NOT PROCEED TO LOADING THE CARGO" );
             return false;
         }
 
@@ -48,6 +48,7 @@ public class RefrigeratedContainer extends Container {
             currentLoadedProduct = newProduct.getName();
             currentTemperature = newProduct.getTemperature();
             setLoaded(true);
+            System.out.println(getSerialNumber() + ": WARNING: THE CARGO WAS LOADED SUCCESSFULLY WITH " +newProduct.getName().toUpperCase());
             return true;
         }
     }

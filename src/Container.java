@@ -7,28 +7,34 @@ public abstract class Container {
     private int maxPayloadInKg;
     private int weightOfTheCargo = 0;
     private boolean isLoaded = false;
+    private ContainerManager cm;
 
-    public Container(int massOfTheContainer, int height, int tareWeight, int depth, int maxPayloadInKg, String serialNumber) {
+    public Container(int massOfTheContainer, int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager containerManager, String series) {
         this.massOfTheContainer = massOfTheContainer;
         this.height = height;
         this.tareWeight = tareWeight;
         this.depth = depth;
         this.maxPayloadInKg = maxPayloadInKg;
-        this.serialNumber = serialNumber;
+        this.cm = containerManager;
+        this.serialNumber = cm.assignSerialNumber(series);
     }
 
     public void emptyTheCargo(){
         if(isLoaded){
             isLoaded = false;
-            System.out.println("WARNING: EMPTYING THE CARGO: " + serialNumber);
+            System.out.println(serialNumber + ": WARNING: EMPTYING THE CARGO");
         }
         else{
-            System.out.println("WARNING: THE CARGO IS NOT LOADED - CAN NOT PROCEED TO EMPTYING THE CARGO: " + serialNumber);
+            System.out.println(serialNumber + ": WARNING: THE CARGO IS NOT LOADED - CAN NOT PROCEED TO EMPTYING THE CARGO");
         }
     }
     public boolean loadTheCargo(int newMass){
-        if(maxPayloadInKg < newMass || isLoaded){
-            System.out.println("WARNING: THE CARGO IS ALREADY LOADED - CAN NOT PROCEED TO LOADING THE CARGO: " + serialNumber);
+        if(isLoaded){
+            System.out.println(serialNumber + ": WARNING: THE CARGO IS ALREADY LOADED - CAN NOT PROCEED TO LOADING THE CARGO");
+            return false;
+        }
+        else if(maxPayloadInKg < newMass){
+            System.out.println(serialNumber + ": WARNING: THE CARGO IS ALREADY LOADED - CAN NOT PROCEED TO LOADING THE CARGO");
             return false;
         }
         return true;
