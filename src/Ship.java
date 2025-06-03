@@ -87,4 +87,41 @@ public class Ship {
             }
         }
     }
+
+    public boolean removeContainer(int serialNumber) {
+        for(Container c : containerList) {
+            if(c.getSerialNumber().endsWith(String.valueOf(serialNumber))) {
+                containerList.remove(c);
+                currentNumberOfContainers--;
+                currentWeightOfALlContainers -= c.getMassOfTheContainer();
+                System.out.println("\nCONTAINER " + c.getSerialNumber() + " REMOVED");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean replaceContainers(int toBeRemoved, Container newContainer){
+        Container toBeReplaced = null;
+        for(Container c : containerList) {
+            if(c.getSerialNumber().endsWith(String.valueOf(toBeRemoved))) {
+                toBeReplaced = c;
+            }
+            if(c.getSerialNumber().endsWith(String.valueOf(newContainer.getSerialNumber()))) {
+                System.out.println(shipName + " SHIP: WARNING: CONTAINER " + c.getSerialNumber() + " IS ALREADY ONBOARD: CANNOT PROCEED TO REPLACING");
+                return false;
+            }
+        }
+        if(toBeReplaced == null || newContainer == null) {
+            System.out.println(shipName + " SHIP: NO CONTAINERS FOUND");
+            return false;
+        }
+        if(currentWeightOfALlContainers + newContainer.getMassOfTheContainer() - toBeReplaced.getMassOfTheContainer() > maxWeightOfALlContainers * 1000) {
+            System.out.println(shipName + " WARNING: CONTAINERS " + toBeReplaced.getSerialNumber() + " AND " + newContainer.getSerialNumber() + " CANNOT BE REPLACED: TOO MUCH WEIGHT");
+            return false;
+        }
+        currentWeightOfALlContainers += newContainer.getMassOfTheContainer() - toBeReplaced.getMassOfTheContainer();
+        System.out.println(shipName + " WARNING: CONTAINERS " + toBeReplaced.getSerialNumber() + " AND " + newContainer.getSerialNumber() + " ARE REPLACED SUCCESSFULLY");
+        return true;
+    }
 }

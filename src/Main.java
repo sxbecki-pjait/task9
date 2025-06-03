@@ -4,6 +4,7 @@ public class Main {
         RefrigeratedContainer refCon1 = new RefrigeratedContainer(1000, 1000, 1000, 5000, cm);
         GasContainer gasCon1 = new GasContainer(1000,500,1000,5000,cm);
         RefrigeratedContainer refCon2 = new RefrigeratedContainer(1000, 1000, 1000, 5000, cm);
+        RefrigeratedContainer refCon3 = new RefrigeratedContainer(1000, 1000, 1000, 5000, cm);
         refCon1.loadTheCargo(2000,new Product("Bananas", 13.3));
         refCon2.emptyTheCargo();
         gasCon1.emptyTheCargo();
@@ -21,5 +22,8 @@ public class Main {
         s1.addContainer(liqCon1);
         System.out.println(s1.getCurrentNumberOfContainers() + " " + s1.getCurrentWeightOfALlContainers());
         s1.displayCurrentContainers();
+//        s1.removeContainer(1);
+//        s1.displayCurrentContainers();
+        s1.replaceContainers(1,refCon3);
     }
 }
