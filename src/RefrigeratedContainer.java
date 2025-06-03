@@ -53,4 +53,8 @@ public class RefrigeratedContainer extends Container {
             return true;
         }
     }
+
+    public String getCurrentLoadedProduct() {
+        return currentLoadedProduct;
+    }
 }

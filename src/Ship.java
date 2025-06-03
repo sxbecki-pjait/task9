@@ -68,4 +68,23 @@ public class Ship {
     public int getCurrentWeightOfALlContainers() {
         return currentWeightOfALlContainers;
     }
+
+    public void displayCurrentContainers(){
+        if(currentNumberOfContainers == 0){
+            System.out.println(shipName + " SHIP: NO CONTAINERS FOUND");
+        }
+        System.out.println("\nTHE LIST OF CONTAINERS ON SHIP");
+        for(Container c : containerList) {
+            System.out.print(c.getSerialNumber());
+            if(c instanceof RefrigeratedContainer){
+                System.out.println(" PRODUCT LOADED: " + ((RefrigeratedContainer) c).getCurrentLoadedProduct());
+            }
+            else if(c instanceof LiquidContainer || c instanceof GasContainer){
+                System.out.println(" IS CARGO HAZARDOUS: " + c.getIsHazardous());
+            }
+            else{
+                System.out.println();
+            }
+        }
+    }
 }

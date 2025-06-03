@@ -13,11 +13,13 @@ public class Main {
         liqCon1.loadTheCargo(4001,true);
         liqCon1.loadTheCargo(2000,true);
         gasCon1.emptyTheCargo();
+        gasCon1.loadTheCargo(1000,true);
         Ship s1 = new Ship(40, 30, 20, "Medusa");
         s1.addContainer(refCon1);
         s1.addContainer(gasCon1);
         s1.addContainer(refCon2);
         s1.addContainer(liqCon1);
         System.out.println(s1.getCurrentNumberOfContainers() + " " + s1.getCurrentWeightOfALlContainers());
+        s1.displayCurrentContainers();
     }
 }

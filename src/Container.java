@@ -8,6 +8,7 @@ public abstract class Container {
     private int weightOfTheCargo = 0;
     private boolean isLoaded = false;
     private ContainerManager cm;
+    private boolean isHazardous = false;
 
     public Container(int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager containerManager, String series) {
         this.massOfTheContainer = tareWeight;
@@ -23,6 +24,7 @@ public abstract class Container {
         if(isLoaded){
             isLoaded = false;
             System.out.println(serialNumber + ": WARNING: EMPTYING THE CARGO");
+            setIsHazardous(false);
             setMassOfTheCargoAndContainer(0);
         }
         else{
@@ -73,5 +75,13 @@ public abstract class Container {
     public void setMassOfTheCargoAndContainer(int massOfTheCargo) {
         this.weightOfTheCargo = massOfTheCargo;
         this.massOfTheContainer = tareWeight + massOfTheCargo;
+    }
+
+    public boolean getIsHazardous() {
+        return isHazardous;
+    }
+
+    public void setIsHazardous(boolean isHazardous) {
+        this.isHazardous = isHazardous;
     }
 }

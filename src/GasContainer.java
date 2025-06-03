@@ -18,14 +18,15 @@ public class GasContainer extends Container implements iHazardousNotifier{
     }
 
 
-    public boolean loadTheCargo(int newMass, boolean isHazardous) {
+    public boolean loadTheCargo(int newMass, boolean isHazardousNew) {
         if(super.loadTheCargo(newMass)){
-            if(isHazardous){
+            if(isHazardousNew){
                 hazardousNotify();
             }
             setLoaded(true);
             setMassOfTheCargoAndContainer(newMass);
             System.out.println(getSerialNumber() + ": CARGO LOADED SUCCESSFULLY");
+            setIsHazardous(isHazardousNew);
             return true;
         }
         return false;
@@ -33,6 +34,6 @@ public class GasContainer extends Container implements iHazardousNotifier{
 
     @Override
     public void hazardousNotify() {
-        System.out.println(getSerialNumber() +  ": HAZARDOUS NOTIFIER: HAZARDOUS MATERIAL IS LOADED!");
+        System.out.println(getSerialNumber() + ": HAZARDOUS NOTIFIER: HAZARDOUS MATERIAL IS LOADED!");
     }
 }
