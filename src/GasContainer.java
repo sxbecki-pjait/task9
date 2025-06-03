@@ -1,17 +1,18 @@
 public class GasContainer extends Container implements iHazardousNotifier{
     private int atmosphere = 1;
 
-    public GasContainer(int massOfTheContainer, int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager cm) {
-        super(massOfTheContainer, height, tareWeight, depth, maxPayloadInKg, cm, "CON-G");
+    public GasContainer(int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager cm) {
+        super(height, tareWeight, depth, maxPayloadInKg, cm, "CON-G");
 
     }
 
     @Override
     public void emptyTheCargo() {
         if(getIsLoaded()){
-            setLoaded(false);
             System.out.println(getSerialNumber() + ": WARNING: EMPTYING MATERIAL LOSE (5%) IN AMOUNT OF " + (getWeightOfTheCargo()*0.05));
-        } else{
+            super.emptyTheCargo();
+        }
+        else {
             super.emptyTheCargo();
         }
     }
@@ -23,6 +24,7 @@ public class GasContainer extends Container implements iHazardousNotifier{
                 hazardousNotify();
             }
             setLoaded(true);
+            setMassOfTheCargoAndContainer(newMass);
             System.out.println(getSerialNumber() + ": CARGO LOADED SUCCESSFULLY");
             return true;
         }

@@ -7,8 +7,8 @@ public class RefrigeratedContainer extends Container {
     private double currentTemperature = 20;
 
 
-    public RefrigeratedContainer(int massOfTheContainer, int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager containerManager) {
-        super(massOfTheContainer, height, tareWeight, depth, maxPayloadInKg, containerManager, "CON-R");
+    public RefrigeratedContainer(int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager containerManager) {
+        super(height, tareWeight, depth, maxPayloadInKg, containerManager, "CON-R");
         productsAllowed.add(new Product("Bananas", 13.3));
         productsAllowed.add(new Product("Chocolate", 18));
         productsAllowed.add(new Product("Fish", 2));
@@ -48,6 +48,7 @@ public class RefrigeratedContainer extends Container {
             currentLoadedProduct = newProduct.getName();
             currentTemperature = newProduct.getTemperature();
             setLoaded(true);
+            setMassOfTheCargoAndContainer(newMass);
             System.out.println(getSerialNumber() + ": WARNING: THE CARGO WAS LOADED SUCCESSFULLY WITH " +newProduct.getName().toUpperCase());
             return true;
         }

@@ -1,8 +1,8 @@
 public class LiquidContainer extends Container implements iHazardousNotifier {
 
 
-    public LiquidContainer(int massOfTheContainer, int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager cm) {
-        super(massOfTheContainer, height, tareWeight, depth, maxPayloadInKg, cm, "CON-L" );
+    public LiquidContainer(int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager cm) {
+        super(height, tareWeight, depth, maxPayloadInKg, cm, "CON-L" );
 
     }
 
@@ -13,6 +13,7 @@ public class LiquidContainer extends Container implements iHazardousNotifier {
                 return false;
             }
             setLoaded(true);
+            setMassOfTheCargoAndContainer(newMass);
             System.out.println(getSerialNumber() + ": CARGO LOADED SUCCESSFULLY");
             return true;
         }
