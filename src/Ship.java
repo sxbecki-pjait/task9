@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Ship {
     private List<Container> containerList = new ArrayList<>();
+    private List<Ship> listOfShips = new ArrayList<>();
     private int maxSpeed;
     private int maxNumberOfContainers;
     private int maxWeightOfALlContainers;
@@ -11,11 +12,12 @@ public class Ship {
     private int currentWeightOfALlContainers;
     private int currentNumberOfContainers;
 
-    public Ship(int maxSpeed, int maxNumberOfContainers, int maxWeightOfALlContainers, String shipName) {
+    public Ship(int maxSpeed, int maxNumberOfContainers, int maxWeightOfALlContainers, String shipName, List<Ship> listOfShips) {
         this.maxSpeed = maxSpeed;
         this.maxNumberOfContainers = maxNumberOfContainers;
         this.maxWeightOfALlContainers = maxWeightOfALlContainers;
         this.shipName = shipName;
+        this.listOfShips = listOfShips;
     }
 
     public boolean addContainer(Container container) {
@@ -123,5 +125,51 @@ public class Ship {
         currentWeightOfALlContainers += newContainer.getMassOfTheContainer() - toBeReplaced.getMassOfTheContainer();
         System.out.println(shipName + " WARNING: CONTAINERS " + toBeReplaced.getSerialNumber() + " AND " + newContainer.getSerialNumber() + " ARE REPLACED SUCCESSFULLY");
         return true;
+    }
+
+    public void displayListOfShips() {
+        for(Ship s : listOfShips) {
+            System.out.println(s.shipName);
+        }
+    }
+
+    public boolean transferBetweenShips(String toShipName, int containerNumber) {
+        System.out.println("=========================================");
+        System.out.println("NEW CONTAINERS TRANSFER");
+        Ship toShip = null;
+        Container container = null;
+        for(Ship s : listOfShips) {
+            if(s.getShipName().equals(toShipName)) {
+                toShip = s;
+            }
+        }
+        for(Container c : containerList) {
+            if(c.getSerialNumber().endsWith(String.valueOf(containerNumber))) {
+                container = c;
+            }
+        }
+        if(container == null) {
+            System.out.println(shipName + " SHIP: NO CONTAINERS TO BE TRANSFERRED FROM FOUND");
+            System.out.println("=========================================");
+            return false;
+        }
+        if(toShip == null) {
+            System.out.println(shipName + " SHIP: NO SHIP FOUND WITH NAME " + toShipName );
+            System.out.println("=========================================");
+            return false;
+        }
+        if(toShip.addContainer(container)) {
+            removeContainer(containerNumber);
+            System.out.println(shipName + " SHIP: SUCCESSFULLY TRANSFERRED");
+            System.out.println("=========================================");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public String getShipName() {
+        return shipName;
     }
 }
