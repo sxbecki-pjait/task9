@@ -9,16 +9,16 @@ public class RefrigeratedContainer extends Container {
 
     public RefrigeratedContainer(int height, int tareWeight, int depth, int maxPayloadInKg, ContainerManager containerManager) {
         super(height, tareWeight, depth, maxPayloadInKg, containerManager, "CON-R");
-        productsAllowed.add(new Product("Bananas", 13.3));
-        productsAllowed.add(new Product("Chocolate", 18));
-        productsAllowed.add(new Product("Fish", 2));
-        productsAllowed.add(new Product("Meat", -15));
-        productsAllowed.add(new Product("Ice Cream", -18));
-        productsAllowed.add(new Product("Frozen Pizza", -30));
-        productsAllowed.add(new Product("Cheese", 7.2));
-        productsAllowed.add(new Product("Sausages", 5));
-        productsAllowed.add(new Product("Butter", 20.5));
-        productsAllowed.add(new Product("Eggs", 19));
+        productsAllowed.add(new Product("bananas", 13.3));
+        productsAllowed.add(new Product("chocolate", 18));
+        productsAllowed.add(new Product("fish", 2));
+        productsAllowed.add(new Product("meat", -15));
+        productsAllowed.add(new Product("ice cream", -18));
+        productsAllowed.add(new Product("frozen pizza", -30));
+        productsAllowed.add(new Product("cheese", 7.2));
+        productsAllowed.add(new Product("sausages", 5));
+        productsAllowed.add(new Product("butter", 20.5));
+        productsAllowed.add(new Product("eggs", 19));
     }
 
     public void emptyTheCargo(){
@@ -30,7 +30,7 @@ public class RefrigeratedContainer extends Container {
     public boolean loadTheCargo(int newMass, Product newProduct){
         boolean isProductOnTheList = false;
         for(Product p : productsAllowed){
-            if(p.getName() == newProduct.getName()){
+            if(newProduct.getName().equals(p.getName().toUpperCase())){
                 isProductOnTheList = true;
                 break;
             }

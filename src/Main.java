@@ -9,7 +9,7 @@ public class Main {
         GasContainer gasCon1 = new GasContainer(1000,500,1000,5000,cm);
         RefrigeratedContainer refCon2 = new RefrigeratedContainer(1000, 1000, 1000, 5000, cm);
         RefrigeratedContainer refCon3 = new RefrigeratedContainer(1000, 1000, 1000, 5000, cm);
-        refCon1.loadTheCargo(2000,new Product("Bananas", 13.3));
+        refCon1.loadTheCargo(2000,new Product("BANANAS", 13.3));
         refCon2.emptyTheCargo();
         gasCon1.emptyTheCargo();
         gasCon1.loadTheCargo(2000,true);
@@ -19,23 +19,25 @@ public class Main {
         liqCon1.loadTheCargo(2000,true);
         gasCon1.emptyTheCargo();
         gasCon1.loadTheCargo(1000,true);
-        Ship s1 = new Ship(40, 30, 20, "Medusa", listOfShips);
-        Ship s2 = new Ship(40, 30, 15, "Octopus", listOfShips);
+        Ship s1 = new Ship(40, 30, 20, "MEDUSA", listOfShips);
+        Ship s2 = new Ship(40, 30, 15, "OCTOPUS", listOfShips);
         listOfShips.add(s1);
         listOfShips.add(s2);
-        s1.addContainer(refCon1);
         s1.addContainer(gasCon1);
         s1.addContainer(refCon2);
         s1.addContainer(liqCon1);
-        System.out.println(s1.getCurrentNumberOfContainers() + " " + s1.getCurrentWeightOfALlContainers());
         s1.displayCurrentContainers();
 //        s1.removeContainer(1);
 //        s1.displayCurrentContainers();
         s1.replaceContainers(1,refCon3);
 
-        s1.displayListOfShips();
-        s1.transferBetweenShips("Octopus", 2);
         s1.displayCurrentContainers();
         s2.displayCurrentContainers();
+        RefrigeratedContainer refCon4 = new RefrigeratedContainer(1000, 1000, 1000, 5000, cm);
+        s1.replaceContainers(2,refCon4);
+        s1.displayCurrentContainers();
+        s1.transferBetweenShips("OCTOPUS", 6);
+        s2.displayCurrentContainers();
+//        refCon1.displayInformation();
     }
 }
