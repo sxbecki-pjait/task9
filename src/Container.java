@@ -2,14 +2,14 @@ import javax.sound.midi.SysexMessage;
 
 public abstract class Container {
     private int massOfTheContainer;
-    private int height;
-    private int tareWeight;
-    private int depth;
-    private String serialNumber;
-    private int maxPayloadInKg;
+    private final int height;
+    private final int tareWeight;
+    private final int depth;
+    private final String serialNumber;
+    private final int maxPayloadInKg;
     private int weightOfTheCargo = 0;
     private boolean isLoaded = false;
-    private ContainerManager cm;
+    private final ContainerManager cm;
     private boolean isHazardous = false;
     private boolean isOnBoard = false;
 

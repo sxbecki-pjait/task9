@@ -6,16 +6,12 @@ public class ContainerManager extends Exception {
 
     public String assignSerialNumber(String series) {
         amountOfContainers++;
-        if(series.equals("CON-G")) {
-            return "CON-G-" + amountOfContainers;
-        }
-        if(series.equals("CON-R")) {
-            return "CON-R-" + amountOfContainers;
-        }
-        if(series.equals("CON-L")) {
-            return "CON-L-" + amountOfContainers;
-        }
-        throw new RuntimeException();
+        return switch (series) {
+            case "CON-G" -> "CON-G-" + amountOfContainers;
+            case "CON-R" -> "CON-R-" + amountOfContainers;
+            case "CON-L" -> "CON-L-" + amountOfContainers;
+            default -> throw new RuntimeException();
+        };
     }
 
 }

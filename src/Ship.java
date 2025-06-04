@@ -3,16 +3,16 @@ import java.util.Collection;
 import java.util.List;
 
 public class Ship {
-    private List<Container> containerList = new ArrayList<>();
+    private final List<Container> containerList = new ArrayList<>();
     private List<Ship> listOfShips = new ArrayList<>();
-    private int maxSpeed;
-    private int maxNumberOfContainers;
-    private int maxWeightOfALlContainers;
-    private String shipName;
+    private final int maxSpeed;
+    private final int maxNumberOfContainers;
+    private final int maxWeightOfALlContainers;
+    private final String shipName;
     private int currentWeightOfALlContainers;
     private int currentNumberOfContainers;
-    private String upperDividerText = "\n==== SHIP ALERT ==============================";
-    private String lowerDividerText = "";
+    private final String upperDividerText = "\n==== SHIP ALERT ==============================";
+    private final String lowerDividerText = "";
 
     public Ship(int maxSpeed, int maxNumberOfContainers, int maxWeightOfALlContainers, String shipName, List<Ship> listOfShips) {
         this.maxSpeed = maxSpeed;
@@ -75,9 +75,9 @@ public class Ship {
             System.out.println(shipName + " SHIP: WARNING: CANNOT ADD MORE CONTAINERS: THE MAXIMUM NUMBER OF CONTAINERS HAS BEEN REACHED");
             return false;
         }
-        for(int i = 0; i < newContainerList.size(); i++) {
-            totalMassOfNewContainers += newContainerList.get(i).getMassOfTheContainer();
-            totalAmountOfNewContainers ++;
+        for (Container container : newContainerList) {
+            totalMassOfNewContainers += container.getMassOfTheContainer();
+            totalAmountOfNewContainers++;
         }
         if(totalAmountOfNewContainers + currentNumberOfContainers > maxNumberOfContainers) {
             System.out.println(shipName + " SHIP: WARNING: CONTAINERS CANNOT BE LOADED: SHIP REACHED IT'S MAX AMOUNT OF CONTAINERS");
